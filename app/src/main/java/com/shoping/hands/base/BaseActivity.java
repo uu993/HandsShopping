@@ -3,15 +3,20 @@ package com.shoping.hands.base;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.shoping.hands.R;
 import com.shoping.hands.manager.AppManager;
+import com.shoping.hands.manager.StatusBarCompat;
 
 import butterknife.ButterKnife;
 
@@ -21,6 +26,10 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
     public Context mContext;
+    private TextView mToolbarTitle;
+    private TextView mToolbarSubTitle;
+    private Toolbar mToolbar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +37,31 @@ public abstract class BaseActivity extends AppCompatActivity {
         doBeforeSetcontentView();
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        initToolBar();
+        setStatusBarColor();
         mContext = this;
         this.initView();
+    }
+
+    private void initToolBar() {
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+       /*
+        toolbar.setLogo(R.mipmap.ic_launcher);
+        toolbar.setTitle("Title");
+        toolbar.setSubtitle("Sub Title");
+        */
+        mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
+        mToolbarSubTitle = (TextView) findViewById(R.id.toolbar_subtitle);
+        if (mToolbar != null) {
+            //将Toolbar显示到界面
+            setSupportActionBar(mToolbar);
+        }
+        if (mToolbarTitle != null) {
+            //getTitle()的值是activity的android:lable属性值
+            mToolbarTitle.setText(getTitle());
+            //设置默认的标题不显示
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
     }
 
     /**
@@ -44,6 +76,79 @@ public abstract class BaseActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
 //        SetStatusBarColor();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        /**
+         * 判断是否有Toolbar,并默认显示返回按钮
+         */
+        if (null != getToolbar() && isShowBacking()) {
+            showBack();
+        }
+    }
+    /**
+     * 版本号小于21的后退按钮图片
+     */
+    private void showBack(){
+        //setNavigationIcon必须在setSupportActionBar(toolbar);方法后面加入
+        getToolbar().setNavigationIcon(R.mipmap.ic_back);
+        getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+    }
+
+    /**
+     * 是否显示后退按钮,默认显示,可在子类重写该方法.
+     * @return
+     */
+    protected boolean isShowBacking(){
+        return true;
+    }
+    /**
+     * 获取头部标题的TextView
+     *
+     * @return
+     */
+    public TextView getToolbarTitle() {
+        return mToolbarTitle;
+    }
+
+    /**
+     * 获取头部标题的TextView
+     *
+     * @return
+     */
+    public TextView getSubTitle() {
+        return mToolbarSubTitle;
+    }
+
+    /**
+     * 设置头部标题
+     *
+     * @param title
+     */
+    public void setToolBarTitle(CharSequence title) {
+        if (mToolbarTitle != null) {
+            mToolbarTitle.setText(title);
+        } else {
+            getToolbar().setTitle(title);
+            setSupportActionBar(getToolbar());
+        }
+    }
+
+    /**
+     * this Activity of tool bar.
+     * 获取头部.
+     *
+     * @return support.v7.widget.Toolbar.
+     */
+    public Toolbar getToolbar() {
+        return (Toolbar) findViewById(R.id.toolbar);
     }
 
     /*********************
@@ -125,5 +230,17 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
         return false;
+    }
+
+    /**
+     * 着色状态栏（4.4以上系统有效）
+     */
+    public void setStatusBarColor() {
+        // 设置竖屏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.color_red, null));
+        } else {
+            StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.color_red));
+        }
     }
 }

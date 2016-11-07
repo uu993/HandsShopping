@@ -2,9 +2,12 @@ package com.shoping.hands.activity;
 
 import android.os.Bundle;
 
-import com.shoping.hands.base.BaseActivity;
 import com.shoping.hands.R;
+import com.shoping.hands.base.BaseActivity;
 
+/**
+ * 主activity
+ */
 public class MainActivity extends BaseActivity {
 
     @Override
