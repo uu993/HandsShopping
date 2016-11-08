@@ -13,13 +13,9 @@ import com.shoping.hands.base.BaseActivity;
 public class SplashActivity extends BaseActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_splash;
+        setContentView(R.layout.activity_splash);
     }
 
     @Override
@@ -31,5 +27,10 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
         }, 1500);
+    }
+
+    @Override
+    protected boolean isShowBacking() {
+        return false;
     }
 }

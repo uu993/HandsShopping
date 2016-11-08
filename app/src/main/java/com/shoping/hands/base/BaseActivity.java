@@ -27,31 +27,35 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
     public Context mContext;
     private TextView mToolbarTitle;
-    private TextView mToolbarSubTitle;
     private Toolbar mToolbar;
 
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         doBeforeSetcontentView();
-        setContentView(getLayoutId());
+        mContext = this;
+    }
+
+    @Override
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
         ButterKnife.bind(this);
         initToolBar();
-        setStatusBarColor();
-        mContext = this;
-        this.initView();
+        initView();
+    }
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        ButterKnife.bind(this);
+        initToolBar();
+        initView();
     }
 
     private void initToolBar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-       /*
-        toolbar.setLogo(R.mipmap.ic_launcher);
-        toolbar.setTitle("Title");
-        toolbar.setSubtitle("Sub Title");
-        */
         mToolbarTitle = (TextView) findViewById(R.id.toolbar_title);
-        mToolbarSubTitle = (TextView) findViewById(R.id.toolbar_subtitle);
         if (mToolbar != null) {
             //将Toolbar显示到界面
             setSupportActionBar(mToolbar);
@@ -75,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         // 设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // 默认着色状态栏
-//        SetStatusBarColor();
+        setStatusBarColor();
     }
 
     @Override
@@ -88,10 +92,11 @@ public abstract class BaseActivity extends AppCompatActivity {
             showBack();
         }
     }
+
     /**
      * 版本号小于21的后退按钮图片
      */
-    private void showBack(){
+    private void showBack() {
         //setNavigationIcon必须在setSupportActionBar(toolbar);方法后面加入
         getToolbar().setNavigationIcon(R.mipmap.ic_back);
         getToolbar().setNavigationOnClickListener(new View.OnClickListener() {
@@ -104,41 +109,26 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 是否显示后退按钮,默认显示,可在子类重写该方法.
-     * @return
-     */
-    protected boolean isShowBacking(){
-        return true;
-    }
-    /**
-     * 获取头部标题的TextView
      *
      * @return
      */
-    public TextView getToolbarTitle() {
-        return mToolbarTitle;
+    protected boolean isShowBacking() {
+        return isShowBacking;
+    }
+
+    boolean isShowBacking = true;
+
+    protected void setShowBacking(boolean isShow) {
+        isShowBacking = isShow;
     }
 
     /**
-     * 获取头部标题的TextView
+     * 设置头部标题的TextView
      *
      * @return
      */
-    public TextView getSubTitle() {
-        return mToolbarSubTitle;
-    }
-
-    /**
-     * 设置头部标题
-     *
-     * @param title
-     */
-    public void setToolBarTitle(CharSequence title) {
-        if (mToolbarTitle != null) {
-            mToolbarTitle.setText(title);
-        } else {
-            getToolbar().setTitle(title);
-            setSupportActionBar(getToolbar());
-        }
+    public void setToolbarTitle(String title) {
+        mToolbarTitle.setText(title);
     }
 
     /**
@@ -150,12 +140,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     public Toolbar getToolbar() {
         return (Toolbar) findViewById(R.id.toolbar);
     }
-
-    /*********************
-     * 子类实现
-     *****************************/
-    //获取布局文件
-    public abstract int getLayoutId();
 
     //初始化view
     public abstract void initView();
@@ -183,6 +167,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.putExtras(bundle);
         }
         startActivity(intent);
+    }
+
+    public void startActivity(Class<?> cls) {
+        startActivity(new Intent(mContext, cls));
     }
 
     @Override
