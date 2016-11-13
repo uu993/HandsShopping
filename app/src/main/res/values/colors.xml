@@ -403,4 +403,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_red">#FF4F4F</color>
+    <color name="limited_spike_title_color">#E385A6</color>
+    <color name="gray_color">#9C9D9E</color>
+    <color name="blue_color">#49BAFC</color>
+    <color name="green_color">#FBC032</color>
 </resources>

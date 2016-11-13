@@ -25,13 +25,15 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="vertical_line_1px">
+    <style name="vertical_line">
         <item name="android:layout_width">1px</item>
+        <item name="android:background">@color/line_color</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="horizontal_line_1px">
+    <style name="horizontal_line">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/line_color</item>
         <item name="android:layout_height">1px</item>
     </style>
 

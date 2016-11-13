@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_45"
+        android:background="@color/color_red"
+        android:gravity="center"
+        android:text="精品推荐"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp_18" />
+
+    <!--<ListView-->
+    <com.snail.pulltorefresh.PullToRefreshListView
+        android:id="@+id/boutique_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white" />
 </LinearLayout>
