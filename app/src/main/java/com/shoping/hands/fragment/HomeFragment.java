@@ -10,21 +10,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.shoping.hands.R;
 import com.shoping.hands.base.BaseFragment;
 import com.shoping.hands.view.SubListView;
-import com.snail.pulltorefresh.PullToRefreshBase;
-import com.snail.pulltorefresh.PullToRefreshScrollView;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.snail.pulltorefresh.PullToRefreshBase;
 import com.snail.pulltorefresh.PullToRefreshScrollView;
 

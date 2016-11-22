@@ -49,7 +49,7 @@
 
     <!--<ScrollView-->
     <com.snail.pulltorefresh.PullToRefreshScrollView
-        android:id="@+id/main_scrollview"
+        android:id="@+id/home_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -62,8 +62,8 @@
 
             <include layout="@layout/fragment_home_header" />
 
-            <ListView
-                android:id="@+id/listView"
+            <com.shoping.hands.view.SubListView
+                android:id="@+id/home_listview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white" />
