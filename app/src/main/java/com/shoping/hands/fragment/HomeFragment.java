@@ -1,5 +1,6 @@
 package com.shoping.hands.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shoping.hands.R;
+import com.shoping.hands.activity.WebViewActivity;
 import com.shoping.hands.base.BaseFragment;
 import com.snail.pulltorefresh.PullToRefreshBase;
 import com.snail.pulltorefresh.PullToRefreshScrollView;
@@ -106,6 +108,7 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.all_layout:
+                startActivity(new Intent(getActivity(), WebViewActivity.class));
                 break;
             case R.id.food_layout:
                 break;

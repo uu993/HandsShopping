@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@color/color_red"
     android:minHeight="?attr/actionBarSize"
-    app:navigationIcon="@mipmap/ic_back">
+    app:navigationIcon="@mipmap/icon_titlebar_back">
     <!--自定义toolbar的title 和subtitle -->
 
     <TextView
@@ -18,7 +18,7 @@
         android:ellipsize="end"
         android:lines="1"
         android:scrollHorizontally="true"
-        android:text="title"
+        android:text=""
         android:textColor="@color/white" />
 
 </android.support.v7.widget.Toolbar>
