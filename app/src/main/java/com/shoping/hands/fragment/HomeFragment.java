@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shoping.hands.R;
 import com.shoping.hands.activity.WebViewActivity;
 import com.shoping.hands.base.BaseFragment;
+import com.shoping.hands.view.SubListView;
 import com.snail.pulltorefresh.PullToRefreshBase;
 import com.snail.pulltorefresh.PullToRefreshScrollView;
 
@@ -30,9 +30,6 @@ import butterknife.OnClick;
 public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRefreshListener2 {
     @Bind(R.id.my_layout)
     RelativeLayout myLayout;
-    @Bind(R.id.main_scrollview)
-    PullToRefreshScrollView scrollView;
-
     @Bind(R.id.home_viewpager)
     ViewPager homeViewpager;
     @Bind(R.id.all_layout)
@@ -65,12 +62,12 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     RelativeLayout cabbagePartyLayout;
     @Bind(R.id.brand_sale_layout)
     LinearLayout brandSaleLayout;
-    @Bind(R.id.listView)
-    ListView listView;
-    @Bind(R.id.my_icon)
-    ImageView myIcon;
-    @Bind(R.id.update_time)
-    TextView updateTime;
+    @Bind(R.id.update_time_text)
+    TextView updateTimeText;
+    @Bind(R.id.home_listview)
+    SubListView homeListview;
+    @Bind(R.id.home_scrollview)
+    PullToRefreshScrollView homeScrollview;
 
     @Nullable
     @Override
@@ -82,31 +79,17 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
     }
 
     private void initView() {
-        scrollView.setMode(PullToRefreshBase.Mode.BOTH);
-        scrollView.setOnRefreshListener(this);
+        homeScrollview.setOnRefreshListener(this);
+        homeScrollview.setMode(PullToRefreshBase.Mode.BOTH);
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @Override
-    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-
-    }
-
-    @Override
-    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-
-    }
-
-    @OnClick({R.id.all_layout, R.id.food_layout, R.id.famliy_layout, R.id.baby_layout
+    @OnClick({R.id.my_layout, R.id.all_layout, R.id.food_layout, R.id.famliy_layout, R.id.baby_layout
             , R.id.cosmetics_layout, R.id.limited_spike_layout, R.id.cabbage_party_layout
-            , R.id.brand_sale_layout, R.id.my_layout})
+            , R.id.brand_sale_layout})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.my_layout:
+                break;
             case R.id.all_layout:
                 startActivity(new Intent(getActivity(), WebViewActivity.class));
                 break;
@@ -124,8 +107,22 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
                 break;
             case R.id.brand_sale_layout:
                 break;
-            case R.id.my_layout:
-                break;
         }
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }
