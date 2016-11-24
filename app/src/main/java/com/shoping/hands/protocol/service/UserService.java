@@ -10,6 +10,11 @@ import retrofit2.http.GET;
  */
 
 public interface UserService {
-    @GET("/api/classCageList")
+    /**
+     * 首页接口
+     *
+     * @param cb
+     */
+    @GET("goodsLink/ios&type=ios_quan&appkey=021hjz3v3k")
     void goodsLink(Callback<GoodsLinkResult> cb);
 }

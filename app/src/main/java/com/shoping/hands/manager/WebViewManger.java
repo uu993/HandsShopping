@@ -178,6 +178,15 @@ public class WebViewManger {
                 t.show();
                 return;
             }
+            String fileName = url.substring(url.lastIndexOf("/") + 1);
+            fileName = URLDecoder.decode(fileName);
+            File directory = Environment.getExternalStorageDirectory();
+            File file = new File(directory, fileName);
+            if (file.exists()) {
+                Intent intent = getFileIntent(file);
+                activity.startActivity(intent);
+                return;
+            }
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setTitle("提示！");
             builder.setMessage("确认下载？");
@@ -207,6 +216,8 @@ public class WebViewManger {
         File directory = Environment.getExternalStorageDirectory();
         File file = new File(directory, fileName);
         if (file.exists()) {
+            Intent intent = getFileIntent(file);
+            activity.startActivity(intent);
             return;
         }
         new HttpUtils().download(url, file.getPath(), true, true, new RequestCallBack<File>() {

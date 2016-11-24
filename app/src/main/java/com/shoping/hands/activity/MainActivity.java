@@ -1,9 +1,7 @@
 package com.shoping.hands.activity;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import com.shoping.hands.R;
 import com.shoping.hands.base.BaseActivity;
@@ -16,10 +14,6 @@ import butterknife.ButterKnife;
  * 主activity
  */
 public class MainActivity extends BaseActivity {
-    @Bind(R.id.toolbar_title)
-    TextView toolbarTitle;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
     @Bind(R.id.container)
     FrameLayout container;
     private MainFragment mainFragment;
@@ -39,6 +33,5 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        setToolbarTitle("主标题");
     }
 }
