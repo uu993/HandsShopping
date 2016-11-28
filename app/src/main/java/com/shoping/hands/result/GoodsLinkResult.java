@@ -7,8 +7,15 @@ import java.util.List;
  */
 
 public class GoodsLinkResult {
+    @Override
+    public String toString() {
+        return "GoodsLinkResult{" +
+                "data=" + data +
+                '}';
+    }
+
     /**
-     * data : {"api_type":"领券优惠v1.4","update_time":"2016/11/14 18:36","total_num":2,"api_content":"IOS专用API数据接口","result":[{"GoodsID":"522578722287","Title":"南极人婴儿睡袋分腿春秋季款纯棉冬天新生儿儿童彩棉宝宝防踢被子","D_title":"南极人 分腿婴儿绒夹棉加厚防踢被子","Pic":"http://img.alicdn.com/imgextra/i2/2129879241/TB2NznvipXXXXcKXpXXXXXXXXXX_!!2129879241.jpg","Cid":"2","Org_Price":"169.00","Price":149,"IsTmall":"1","Sales_num":"25","Dsr":"4.8","SellerID":"2129879241","Commission":"30.50","Commission_jihua":"30.50","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.mjeNgz#!/promo/self/campaign?campaignId=27062546&shopkeeperId=97235754&userNumberId=2129879241","Introduce":"精选有机棉，天然零污染，柔软舒适保暖，把尿方便","Quan_id":"609e70eb5a1b476c8cb9db226c9f7287","Quan_price":"20.00","Quan_time":"2016-11-30 00:00:00","Quan_surplus":"8245","Quan_receive":"1755","Quan_condition":"单笔满145元可用，每人限领2 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2129879241&activity_id=609e70eb5a1b476c8cb9db226c9f7287","Quan_m_link":"http://dwz.cn/4vAqlW","ali_click":"https://detail.tmall.com/item.htm?id=522578722287"},{"GoodsID":"538968846035","Title":"都市方圆机械键盘鼠标套装电脑有线usbLOL游戏背光104键黑轴青轴","D_title":"都市方圆机械键盘鼠标套装机械键鼠","Pic":"http://img.alicdn.com/imgextra/i2/2454671485/TB2egzWXCMb61BjSZFyXXcaUFXa_!!2454671485.jpg","Cid":"8","Org_Price":"158.00","Price":138,"IsTmall":"1","Sales_num":"2354","Dsr":"4.8","SellerID":"2454671485","Commission":"20.30","Commission_jihua":"20.30","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.FJcXbp#!/promo/self/campaign?campaignId=33976697&shopkeeperId=109586072&userNumberId=2454671485","Introduce":"真机械，全键无冲设计，青轴黑轴可选，多种游戏背光，宏自定义鼠标，送超大鼠标垫。","Quan_id":"b485dcdf2ac64d188b4bee80e0dbf617","Quan_price":"20.00","Quan_time":"2016-11-30 00:00:00","Quan_surplus":"2572","Quan_receive":"2428","Quan_condition":"单笔满155元可用，每人限领1 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2454671485&activity_id=b485dcdf2ac64d188b4bee80e0dbf617","Quan_m_link":"http://dwz.cn/4wWLZt","ali_click":"https://detail.tmall.com/item.htm?id=538968846035"}]}
+     * data : {"api_type":"领券优惠v1.4","update_time":"2016/11/28 12:00","total_num":15,"api_content":"IOS专用API数据接口","result":[{"GoodsID":"45327309639","Title":"三塘陶瓷 创意陶瓷杯子带勺马克杯马克咖啡杯牛奶水杯","D_title":"三塘陶瓷 创意陶瓷杯子带勺马克杯","Pic":"http://img.alicdn.com/imgextra/i3/2455190501/TB2ZDXUbk1M.eBjSZFFXXc3vVXa_!!2455190501.jpg","Cid":"4","Org_Price":"13.90","Price":8.9,"IsTmall":"1","Sales_num":"3611","Dsr":"4.8","SellerID":"2455190501","Commission":"30.50","Commission_jihua":"30.50","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.2lMna4#!/promo/self/campaign?campaignId=8040640&shopkeeperId=110577870&userNumberId=2455190501","Introduce":"创意个性风格带勺子情侣款，甜蜜搞怪马克杯，办公室，居家各种场合衬托出不一样效果，独特创意引领潮流。","Quan_id":"b1187944afb24023978591b0c2762f5f","Quan_price":"5.00","Quan_time":"2016-11-28 00:00:00","Quan_surplus":"3068","Quan_receive":"6932","Quan_condition":"单笔满12元可用，每人限领2 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2455190501&activity_id=b1187944afb24023978591b0c2762f5f","Quan_m_link":"http://dwz.cn/4FhVr7","ali_click":"https://detail.tmall.com/item.htm?id=45327309639"}]}
      */
 
     private DataBean data;
@@ -22,12 +29,23 @@ public class GoodsLinkResult {
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "api_type='" + api_type + '\'' +
+                    ", update_time='" + update_time + '\'' +
+                    ", total_num=" + total_num +
+                    ", api_content='" + api_content + '\'' +
+                    ", result=" + result +
+                    '}';
+        }
+
         /**
          * api_type : 领券优惠v1.4
-         * update_time : 2016/11/14 18:36
-         * total_num : 2
+         * update_time : 2016/11/28 12:00
+         * total_num : 15
          * api_content : IOS专用API数据接口
-         * result : [{"GoodsID":"522578722287","Title":"南极人婴儿睡袋分腿春秋季款纯棉冬天新生儿儿童彩棉宝宝防踢被子","D_title":"南极人 分腿婴儿绒夹棉加厚防踢被子","Pic":"http://img.alicdn.com/imgextra/i2/2129879241/TB2NznvipXXXXcKXpXXXXXXXXXX_!!2129879241.jpg","Cid":"2","Org_Price":"169.00","Price":149,"IsTmall":"1","Sales_num":"25","Dsr":"4.8","SellerID":"2129879241","Commission":"30.50","Commission_jihua":"30.50","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.mjeNgz#!/promo/self/campaign?campaignId=27062546&shopkeeperId=97235754&userNumberId=2129879241","Introduce":"精选有机棉，天然零污染，柔软舒适保暖，把尿方便","Quan_id":"609e70eb5a1b476c8cb9db226c9f7287","Quan_price":"20.00","Quan_time":"2016-11-30 00:00:00","Quan_surplus":"8245","Quan_receive":"1755","Quan_condition":"单笔满145元可用，每人限领2 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2129879241&activity_id=609e70eb5a1b476c8cb9db226c9f7287","Quan_m_link":"http://dwz.cn/4vAqlW","ali_click":"https://detail.tmall.com/item.htm?id=522578722287"},{"GoodsID":"538968846035","Title":"都市方圆机械键盘鼠标套装电脑有线usbLOL游戏背光104键黑轴青轴","D_title":"都市方圆机械键盘鼠标套装机械键鼠","Pic":"http://img.alicdn.com/imgextra/i2/2454671485/TB2egzWXCMb61BjSZFyXXcaUFXa_!!2454671485.jpg","Cid":"8","Org_Price":"158.00","Price":138,"IsTmall":"1","Sales_num":"2354","Dsr":"4.8","SellerID":"2454671485","Commission":"20.30","Commission_jihua":"20.30","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.FJcXbp#!/promo/self/campaign?campaignId=33976697&shopkeeperId=109586072&userNumberId=2454671485","Introduce":"真机械，全键无冲设计，青轴黑轴可选，多种游戏背光，宏自定义鼠标，送超大鼠标垫。","Quan_id":"b485dcdf2ac64d188b4bee80e0dbf617","Quan_price":"20.00","Quan_time":"2016-11-30 00:00:00","Quan_surplus":"2572","Quan_receive":"2428","Quan_condition":"单笔满155元可用，每人限领1 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2454671485&activity_id=b485dcdf2ac64d188b4bee80e0dbf617","Quan_m_link":"http://dwz.cn/4wWLZt","ali_click":"https://detail.tmall.com/item.htm?id=538968846035"}]
+         * result : [{"GoodsID":"45327309639","Title":"三塘陶瓷 创意陶瓷杯子带勺马克杯马克咖啡杯牛奶水杯","D_title":"三塘陶瓷 创意陶瓷杯子带勺马克杯","Pic":"http://img.alicdn.com/imgextra/i3/2455190501/TB2ZDXUbk1M.eBjSZFFXXc3vVXa_!!2455190501.jpg","Cid":"4","Org_Price":"13.90","Price":8.9,"IsTmall":"1","Sales_num":"3611","Dsr":"4.8","SellerID":"2455190501","Commission":"30.50","Commission_jihua":"30.50","Commission_queqiao":"0.00","Jihua_link":"http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.2lMna4#!/promo/self/campaign?campaignId=8040640&shopkeeperId=110577870&userNumberId=2455190501","Introduce":"创意个性风格带勺子情侣款，甜蜜搞怪马克杯，办公室，居家各种场合衬托出不一样效果，独特创意引领潮流。","Quan_id":"b1187944afb24023978591b0c2762f5f","Quan_price":"5.00","Quan_time":"2016-11-28 00:00:00","Quan_surplus":"3068","Quan_receive":"6932","Quan_condition":"单笔满12元可用，每人限领2 张","Quan_link":"http://shop.m.taobao.com/shop/coupon.htm?seller_id=2455190501&activity_id=b1187944afb24023978591b0c2762f5f","Quan_m_link":"http://dwz.cn/4FhVr7","ali_click":"https://detail.tmall.com/item.htm?id=45327309639"}]
          */
 
         private String api_type;
@@ -77,32 +95,63 @@ public class GoodsLinkResult {
         }
 
         public static class ResultBean {
+            @Override
+            public String toString() {
+                return "ResultBean{" +
+                        "GoodsID='" + GoodsID + '\'' +
+                        ", Title='" + Title + '\'' +
+                        ", D_title='" + D_title + '\'' +
+                        ", Pic='" + Pic + '\'' +
+                        ", Cid='" + Cid + '\'' +
+                        ", Org_Price='" + Org_Price + '\'' +
+                        ", Price=" + Price +
+                        ", IsTmall='" + IsTmall + '\'' +
+                        ", Sales_num='" + Sales_num + '\'' +
+                        ", Dsr='" + Dsr + '\'' +
+                        ", SellerID='" + SellerID + '\'' +
+                        ", Commission='" + Commission + '\'' +
+                        ", Commission_jihua='" + Commission_jihua + '\'' +
+                        ", Commission_queqiao='" + Commission_queqiao + '\'' +
+                        ", Jihua_link='" + Jihua_link + '\'' +
+                        ", Introduce='" + Introduce + '\'' +
+                        ", Quan_id='" + Quan_id + '\'' +
+                        ", Quan_price='" + Quan_price + '\'' +
+                        ", Quan_time='" + Quan_time + '\'' +
+                        ", Quan_surplus='" + Quan_surplus + '\'' +
+                        ", Quan_receive='" + Quan_receive + '\'' +
+                        ", Quan_condition='" + Quan_condition + '\'' +
+                        ", Quan_link='" + Quan_link + '\'' +
+                        ", Quan_m_link='" + Quan_m_link + '\'' +
+                        ", ali_click='" + ali_click + '\'' +
+                        '}';
+            }
+
             /**
-             * GoodsID : 522578722287
-             * Title : 南极人婴儿睡袋分腿春秋季款纯棉冬天新生儿儿童彩棉宝宝防踢被子
-             * D_title : 南极人 分腿婴儿绒夹棉加厚防踢被子
-             * Pic : http://img.alicdn.com/imgextra/i2/2129879241/TB2NznvipXXXXcKXpXXXXXXXXXX_!!2129879241.jpg
-             * Cid : 2
-             * Org_Price : 169.00
-             * Price : 149
+             * GoodsID : 45327309639
+             * Title : 三塘陶瓷 创意陶瓷杯子带勺马克杯马克咖啡杯牛奶水杯
+             * D_title : 三塘陶瓷 创意陶瓷杯子带勺马克杯
+             * Pic : http://img.alicdn.com/imgextra/i3/2455190501/TB2ZDXUbk1M.eBjSZFFXXc3vVXa_!!2455190501.jpg
+             * Cid : 4
+             * Org_Price : 13.90
+             * Price : 8.9
              * IsTmall : 1
-             * Sales_num : 25
+             * Sales_num : 3611
              * Dsr : 4.8
-             * SellerID : 2129879241
+             * SellerID : 2455190501
              * Commission : 30.50
              * Commission_jihua : 30.50
              * Commission_queqiao : 0.00
-             * Jihua_link : http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.mjeNgz#!/promo/self/campaign?campaignId=27062546&shopkeeperId=97235754&userNumberId=2129879241
-             * Introduce : 精选有机棉，天然零污染，柔软舒适保暖，把尿方便
-             * Quan_id : 609e70eb5a1b476c8cb9db226c9f7287
-             * Quan_price : 20.00
-             * Quan_time : 2016-11-30 00:00:00
-             * Quan_surplus : 8245
-             * Quan_receive : 1755
-             * Quan_condition : 单笔满145元可用，每人限领2 张
-             * Quan_link : http://shop.m.taobao.com/shop/coupon.htm?seller_id=2129879241&activity_id=609e70eb5a1b476c8cb9db226c9f7287
-             * Quan_m_link : http://dwz.cn/4vAqlW
-             * ali_click : https://detail.tmall.com/item.htm?id=522578722287
+             * Jihua_link : http://pub.alimama.com/myunion.htm?spm=a220o.1000855.0.0.2lMna4#!/promo/self/campaign?campaignId=8040640&shopkeeperId=110577870&userNumberId=2455190501
+             * Introduce : 创意个性风格带勺子情侣款，甜蜜搞怪马克杯，办公室，居家各种场合衬托出不一样效果，独特创意引领潮流。
+             * Quan_id : b1187944afb24023978591b0c2762f5f
+             * Quan_price : 5.00
+             * Quan_time : 2016-11-28 00:00:00
+             * Quan_surplus : 3068
+             * Quan_receive : 6932
+             * Quan_condition : 单笔满12元可用，每人限领2 张
+             * Quan_link : http://shop.m.taobao.com/shop/coupon.htm?seller_id=2455190501&activity_id=b1187944afb24023978591b0c2762f5f
+             * Quan_m_link : http://dwz.cn/4FhVr7
+             * ali_click : https://detail.tmall.com/item.htm?id=45327309639
              */
 
             private String GoodsID;
@@ -111,7 +160,7 @@ public class GoodsLinkResult {
             private String Pic;
             private String Cid;
             private String Org_Price;
-            private int Price;
+            private double Price;
             private String IsTmall;
             private String Sales_num;
             private String Dsr;
@@ -179,11 +228,11 @@ public class GoodsLinkResult {
                 this.Org_Price = Org_Price;
             }
 
-            public int getPrice() {
+            public double getPrice() {
                 return Price;
             }
 
-            public void setPrice(int Price) {
+            public void setPrice(double Price) {
                 this.Price = Price;
             }
 

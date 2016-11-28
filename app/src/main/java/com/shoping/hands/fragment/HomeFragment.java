@@ -12,9 +12,13 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.shoping.hands.R;
 import com.shoping.hands.activity.WebViewActivity;
 import com.shoping.hands.base.BaseFragment;
+import com.shoping.hands.manager.Logger;
+import com.shoping.hands.protocol.manager.UserManger;
+import com.shoping.hands.result.GoodsLinkResult;
 import com.shoping.hands.view.SubListView;
 import com.snail.pulltorefresh.PullToRefreshBase;
 import com.snail.pulltorefresh.PullToRefreshScrollView;
@@ -22,6 +26,9 @@ import com.snail.pulltorefresh.PullToRefreshScrollView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by mingge on 2016/11/8.
@@ -75,12 +82,30 @@ public class HomeFragment extends BaseFragment implements PullToRefreshBase.OnRe
         view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
         initView();
+        getGoodLink();
         return view;
     }
 
     private void initView() {
         homeScrollview.setOnRefreshListener(this);
         homeScrollview.setMode(PullToRefreshBase.Mode.BOTH);
+    }
+
+    private void getGoodLink() {
+        UserManger.getInstance().getGoodLink().enqueue(new Callback<GoodsLinkResult>() {
+            @Override
+            public void onResponse(Call<GoodsLinkResult> call, Response<GoodsLinkResult> response) {
+                GoodsLinkResult body = response.body();
+                limitedSpikeText.setText(body.getData().getResult().get(0).getTitle());
+                Glide.with(getActivity()).load(body.getData().getResult().get(0).getPic()).into(limitedSpikeIcon);
+            }
+
+            @Override
+            public void onFailure(Call<GoodsLinkResult> call, Throwable t) {
+                Logger.e("onFailure==");
+                Logger.e("t=="+t.getMessage());
+            }
+        });
     }
 
     @OnClick({R.id.my_layout, R.id.all_layout, R.id.food_layout, R.id.famliy_layout, R.id.baby_layout

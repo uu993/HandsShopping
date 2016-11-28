@@ -1,59 +1,70 @@
 package com.shoping.hands.protocol.manager;
 
-import android.util.Log;
-
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.DateTypeAdapter;
 import com.shoping.hands.Constants;
+import com.shoping.hands.MyApp;
+import com.shoping.hands.manager.Logger;
 
-import java.util.Date;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
-import retrofit.ErrorHandler;
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.converter.GsonConverter;
+import okhttp3.Cache;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by tianxiaopeng on 15-1-6.
+ * Created by mingge on 16-11-11.
  */
 public class RestManager {
     private static RestManager s_instance;
-    private RestAdapter _restAdapter;
+    private Retrofit retrofit;
 
     private RestManager() {
+        //开启Log
+        HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+            @Override
+            public void log(String message) {
+                Logger.d(message);
+            }
+        });
+        logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        //缓存
+        File cacheFile = new File(MyApp.getAppContext().getCacheDir(), "cache");
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        //增加头部信息
+        Interceptor headerInterceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request build = chain.request().newBuilder()
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                Logger.d(build.headers().toString());
+                return chain.proceed(build);
+            }
+        };
+
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(logInterceptor)
+                .connectTimeout(5000, TimeUnit.SECONDS)
+                .readTimeout(6000,TimeUnit.SECONDS)
+                .addInterceptor(headerInterceptor)
+                .cache(cache)
+                .build();
         Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
-                .registerTypeAdapter(Date.class, new DateTypeAdapter())
-                .create();
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .create();//使用 gson coverter，统一日期请求格式
 
-        ErrorHandler errorHandler = new ErrorHandler() {
-            @Override
-            public Throwable handleError(RetrofitError retrofitError) {
-                if (retrofitError != null && retrofitError.getMessage() != null) {
-                    Log.e("retrofit", retrofitError.getMessage());
-                }
-                return retrofitError;
-            }
-        };
-
-        RequestInterceptor requestInterceptor = new RequestInterceptor() {
-            @Override
-            public void intercept(RequestFacade request) {
-                request.addHeader("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2141.0 Safari/537.36");
-                request.addHeader("Accept", "application/json");
-            }
-        };
-
-        _restAdapter = new RestAdapter.Builder()
-                .setEndpoint(Constants.BASE_URL)
-                //                           .setClient(client)
-                .setErrorHandler(errorHandler)
-                .setRequestInterceptor(requestInterceptor)
-                .setConverter(new GsonConverter(gson))
-                .setLogLevel(RestAdapter.LogLevel.FULL)
+        retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 
@@ -66,7 +77,7 @@ public class RestManager {
     }
 
     public <T> T create(Class<T> service) {
-        return _restAdapter.create(service);
+        return retrofit.create(service);
     }
 }
 

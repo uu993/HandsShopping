@@ -50,35 +50,35 @@ public class Logger {
 
     public static void v(String s) {
         if (VERBOSE >= level) {
-            String message = getDebugInfo() + "\n" + s;
+            String message = getDebugInfo()  + s;
             logs(VERBOSE, message);
         }
     }
 
     public static void i(String s) {
         if (INFO >= level) {
-            String message = getDebugInfo() + "\n" + s;
+            String message = getDebugInfo()  + s;
             logs(INFO, message);
         }
     }
 
     public static void w(String s) {
         if (WARN >= level) {
-            String message = getDebugInfo() + "\n" + s;
+            String message = getDebugInfo()  + s;
             logs(WARN, message);
         }
     }
 
     public static void e(String s) {
         if (ERROR >= level) {
-            String message = getDebugInfo() + "\n" + s;
+            String message = getDebugInfo()  + s;
             logs(ERROR, message);
         }
     }
 
     public static void d(String s) {
         if (DEBUG >= level) {
-            String message = getDebugInfo() + "\n" + s;
+            String message = getDebugInfo()  + s;
             logs(DEBUG, message);
         }
     }
@@ -102,7 +102,7 @@ public class Logger {
      */
     public static void json(String json) {
         if (TextUtils.isEmpty(json)) {
-            String message = getDebugInfo() + "\n" + "Empty/Null json content";
+            String message = getDebugInfo()  + "Empty/Null json content";
             dd(message);
             return;
         }
@@ -111,18 +111,18 @@ public class Logger {
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 String message = jsonObject.toString(JSON_INDENT);
-                String info = getDebugInfo() + "\n" + message;
+                String info = getDebugInfo()  + message;
                 dd(info);
                 return;
             }
             if (json.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(json);
                 String message = jsonArray.toString(JSON_INDENT);
-                String info = getDebugInfo() + "\n" + message;
+                String info = getDebugInfo()  + message;
                 dd(info);
             }
         } catch (JSONException e) {
-            String info = getDebugInfo() + "\n" + e.getCause().getMessage() + "\n" + json;
+            String info = getDebugInfo()  + e.getCause().getMessage()  + json;
             ee(info);
         }
     }
@@ -135,7 +135,7 @@ public class Logger {
     public static void json(Object src) {
         String json = new Gson().toJson(src);
         if (TextUtils.isEmpty(json)) {
-            String message = getDebugInfo() + "\n" + "Empty/Null json content";
+            String message = getDebugInfo()  + "Empty/Null json content";
             ee(message);
             return;
         }
@@ -144,18 +144,18 @@ public class Logger {
             if (json.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(json);
                 String message = jsonObject.toString(JSON_INDENT);
-                String info = getDebugInfo() + "\n" + message;
+                String info = getDebugInfo()  + message;
                 ee(info);
                 return;
             }
             if (json.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(json);
                 String message = jsonArray.toString(JSON_INDENT);
-                String info = getDebugInfo() + "\n" + message;
+                String info = getDebugInfo()  + message;
                 ee(info);
             }
         } catch (JSONException e) {
-            String info = getDebugInfo() + "\n" + e.getCause().getMessage() + "\n" + json;
+            String info = getDebugInfo()  + e.getCause().getMessage()  + json;
             ee(info);
         }
     }
@@ -179,7 +179,7 @@ public class Logger {
             transformer.transform(xmlInput, xmlOutput);
             d(xmlOutput.getWriter().toString().replaceFirst(">", ">\n"));
         } catch (TransformerException e) {
-            e(e.getCause().getMessage() + "\n" + xml);
+            e(e.getCause().getMessage()  + xml);
         }
     }
 
